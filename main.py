@@ -3,7 +3,8 @@ from tkinter import *
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
-
+def save_password():
+  pass
 # ---------------------------- UI SETUP ------------------------------- #
 window = Tk()
 window.title("My Password Manager")
