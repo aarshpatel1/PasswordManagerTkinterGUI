@@ -4,6 +4,7 @@ from random import choice, randint, shuffle
 import pyperclip
 import json
 
+
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
     letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u',
@@ -45,30 +46,32 @@ def save_password():
     }
 
     # checks whether an input field is not empty and if it is than shows an error messagebox (pop-up)
-    if website == "":
-        messagebox.showerror(title="Error", message="You forgot to enter the website.. !!")
-    elif email == "":
-        messagebox.showerror(title="Error", message="You forgot to enter the email or username.. !!")
-    elif password == "":
-        messagebox.showerror(title="Error", message="You forgot to enter the password.. !!")
+    if website == "" or email == "" or password == "":
+        messagebox.showerror(title="Error", message="You forgot to enter the details...!")
     else:
         is_yes = messagebox.askyesno(title=website, message=f"Email: {email}\nPassword: {password}\n"
                                                             f"\n Do you want to save this data?")
 
         # creates or opens password_data.txt file in append mode and stores the password
         if is_yes:
+            # storing password data into .txt file
             # with open("password_data.txt", "a") as password_data:
             #     password_data.write(f"{website} | {email} | {password}\n")
 
+            # storing data into .json file
             try:
                 with open("password_data.json", "r") as password_data:
+                    # reads the old data inside the json file
                     data = json.load(password_data)
+                    # updates the old data with new data
                     data.update(new_password_data)
             except FileNotFoundError:
                 with open("password_data.json", "w") as password_data:
+                    # writes a new data into json file
                     json.dump(new_password_data, password_data, indent=4)
             else:
                 with open("password_data.json", "w") as password_data:
+                    # writes a new data (updated) into json file
                     json.dump(data, password_data, indent=4)
 
             # deletes the past inputs and focuses on the website_input field again
@@ -97,9 +100,13 @@ website_label.grid(column=0, row=1)
 website_label.config(pady=15)
 
 # website input
-website_input = Entry(width=45)
-website_input.grid(column=1, row=1, columnspan=2)
+website_input = Entry(width=25)
+website_input.grid(column=1, row=1)
 website_input.focus()
+
+# search button
+search_button = Button(text="Search", width=15)
+search_button.grid(column=2, row=1)
 
 # email label
 email_label = Label(text="Email/Username")
