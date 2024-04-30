@@ -1,20 +1,19 @@
-# Types of Errors
-
-# FileNotFoundError
+# # Types of Errors
+#
+# # FileNotFoundError
 # with open("a_file.txt") as file:
 #     file.read()
-
-# KeyError
+#
+# # KeyError
 # dictionary = {"key": "value"}
 # print(dictionary["not_existing_key"])
-
-# IndexError
+#
+# # IndexError
 # fruits = ["apple", "banana", "cherry"]
 # print(fruits[3])
-
-
-# Exception Handling
-
+#
+# # Exception Handling
+#
 # try:
 #     file = open("a_file.txt")
 #     dictionary = {"key": "value"}
@@ -31,10 +30,9 @@
 #     file.close()
 #     print("File was closed.")
 #     raise TypeError("This is an error that I made up.")
-
-
-# BMI Example
-
+#
+# # BMI Example
+#
 # height = float(input("Height in meters: "))
 # weight = int(input("Weight: "))
 #
