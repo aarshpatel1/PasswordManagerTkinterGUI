@@ -37,18 +37,19 @@ def search_password():
     if website == "":
         messagebox.showerror(title="Error", message="You forgot to enter the website...!")
     else:
-        with open("password_data.json", "r") as password_data:
-            data = json.load(password_data)
-            try:
+        try:
+            with open("password_data.json", "r") as password_data:
+                data = json.load(password_data)
+
                 registered_email = data[website]["email"]
                 registered_password = data[website]["password"]
-            except KeyError as website_name:
-                messagebox.showerror(title="Error", message=f"No password data found of {website_name}.")
-            except FileNotFoundError:
-                messagebox.showerror(title="Error", message="No password data file is found.")
-            else:
-                messagebox.showinfo(title=website,
-                                    message=f"Email: {registered_email}\nPassword: {registered_password}")
+        except KeyError as website_name:
+            messagebox.showerror(title="Error", message=f"No password data found of {website_name}.")
+        except FileNotFoundError:
+            messagebox.showerror(title="Error", message="No password data file is found.")
+        else:
+            messagebox.showinfo(title=website,
+                                message=f"Email: {registered_email}\nPassword: {registered_password}")
 
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
