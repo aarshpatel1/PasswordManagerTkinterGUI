@@ -32,10 +32,20 @@ def generate_password():
 
 # ---------------------------- SEARCH PASSWORD ------------------------------- #
 def search_password():
+    website = website_input.get()
 
     with open("password_data.json", "r") as password_data:
         data = json.load(password_data)
-        print(data)
+
+        try:
+            registered_email = data[website]["email"]
+            registered_password = data[website]["password"]
+        except KeyError:
+            messagebox.showerror(title="Error", message="No password data found of this website.")
+        except FileNotFoundError:
+            messagebox.showerror(title="Error", message="No password data file is found.")
+        else:
+            messagebox.showinfo(title=website, message=f"Email: {registered_email}\nPassword: {registered_password}")
 
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
@@ -98,7 +108,7 @@ window.config(padx=50, pady=50)
 canvas = Canvas(height=200, width=200, highlightthickness=0)
 
 # specifies the logo image file and path
-logo = PhotoImage(file="original_logo.png")
+logo = PhotoImage(file="logo.png")
 canvas.create_image(100, 100, image=logo)
 canvas.grid(column=1, row=0)
 
