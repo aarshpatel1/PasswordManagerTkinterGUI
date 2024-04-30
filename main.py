@@ -39,7 +39,6 @@ def search_password():
     else:
         with open("password_data.json", "r") as password_data:
             data = json.load(password_data)
-
             try:
                 registered_email = data[website]["email"]
                 registered_password = data[website]["password"]
