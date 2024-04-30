@@ -39,11 +39,12 @@ def search_password():
     else:
         with open("password_data.json", "r") as password_data:
             data = json.load(password_data)
+
             try:
                 registered_email = data[website]["email"]
                 registered_password = data[website]["password"]
-            except KeyError:
-                messagebox.showerror(title="Error", message="No password data found of this website.")
+            except KeyError as website_name:
+                messagebox.showerror(title="Error", message=f"No password data found of {website_name}.")
             except FileNotFoundError:
                 messagebox.showerror(title="Error", message="No password data file is found.")
             else:
