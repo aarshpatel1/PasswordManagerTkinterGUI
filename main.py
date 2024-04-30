@@ -30,6 +30,14 @@ def generate_password():
     pyperclip.copy(random_password)
 
 
+# ---------------------------- SEARCH PASSWORD ------------------------------- #
+def search_password():
+
+    with open("password_data.json", "r") as password_data:
+        data = json.load(password_data)
+        print(data)
+
+
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save_password():
     # gets input from the input fields
@@ -105,7 +113,7 @@ website_input.grid(column=1, row=1)
 website_input.focus()
 
 # search button
-search_button = Button(text="Search", width=15)
+search_button = Button(text="Search", width=15, command=search_password)
 search_button.grid(column=2, row=1)
 
 # email label
